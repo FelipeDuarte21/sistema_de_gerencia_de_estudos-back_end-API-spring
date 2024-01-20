@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.felipeduarte.gerenciadordeestudo.dto.UsuarioDadosDTO;
 import br.com.felipeduarte.gerenciadordeestudo.entity.enums.TipoUsuario;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -45,5 +46,13 @@ public class Usuario implements Serializable{
 
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
 	private List<EstudoUsuario> estudosUsuario = new ArrayList<>();
+	
+	public Usuario(UsuarioDadosDTO dados) {
+		this.id = dados.getId();
+		this.nome = dados.getNome();
+		this.email = dados.getEmail();
+		this.senha = dados.getSenha();
+		this.tipo = TipoUsuario.toEnum(dados.getTipo());
+	}
 	
 }

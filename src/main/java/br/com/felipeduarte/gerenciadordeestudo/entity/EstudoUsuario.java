@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.felipeduarte.gerenciadordeestudo.dto.EstudoUsuarioDadosDTO;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -47,5 +48,11 @@ public class EstudoUsuario implements Serializable {
 	
 	@OneToMany(mappedBy = "estudoUsuario", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Aula> aulas = new ArrayList<>();
+	
+	public EstudoUsuario(EstudoUsuarioDadosDTO dados) {
+		this.id = dados.getId();
+		this.dataInscricao = LocalDate.now();
+		this.valorPago = dados.getValorPago();
+	}
 
 }

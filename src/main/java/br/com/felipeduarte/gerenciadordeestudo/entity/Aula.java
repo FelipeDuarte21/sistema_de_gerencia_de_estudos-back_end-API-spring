@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import br.com.felipeduarte.gerenciadordeestudo.dto.AulaDadosDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -43,5 +44,13 @@ public class Aula implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "id_tema")
 	private Tema tema;
+	
+	public Aula(AulaDadosDTO dados) {
+		this.id = dados.getId();
+		this.data = dados.getData();
+		this.horaInicio = dados.getHoraInicio();
+		this.horaTermino = dados.getHoraTermino();
+		this.tempoDuracao = dados.getTempoDuracao();
+	}
 	
 }

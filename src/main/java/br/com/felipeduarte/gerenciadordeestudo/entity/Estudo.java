@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.felipeduarte.gerenciadordeestudo.dto.EstudoDadosDTO;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -45,5 +46,10 @@ public class Estudo implements Serializable {
 	@OneToMany(mappedBy = "estudo", cascade = CascadeType.REMOVE)
 	private List<EstudoUsuario> estudosUsuario = new ArrayList<>();
 	
+	public Estudo(EstudoDadosDTO dados) {
+		this.id = dados.getId();
+		this.nome = dados.getNome();
+		this.descricao = dados.getDescricao();
+	}
 	
 }

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.felipeduarte.gerenciadordeestudo.dto.TemaDadosDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -41,5 +42,11 @@ public class Tema implements Serializable {
 	
 	@OneToMany(mappedBy = "tema")
 	private List<Aula> aulas = new ArrayList<>();
+	
+	public Tema(TemaDadosDTO dados) {
+		this.id = dados.getId();
+		this.titulo = dados.getTitulo();
+		this.cargaHoraria = dados.getCargaHoraria();
+	}
 	
 }

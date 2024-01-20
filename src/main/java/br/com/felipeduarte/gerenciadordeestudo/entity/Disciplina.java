@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.felipeduarte.gerenciadordeestudo.dto.DisciplinaDadosDTO;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -41,5 +42,10 @@ public class Disciplina implements Serializable {
 	
 	@OneToMany(mappedBy = "disciplina", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Tema> temas = new ArrayList<>();
+	
+	public Disciplina(DisciplinaDadosDTO dados) {
+		this.id = dados.getId();
+		this.nome = dados.getNome();
+	}
 
 }
