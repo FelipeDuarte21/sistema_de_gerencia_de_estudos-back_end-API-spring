@@ -62,6 +62,16 @@ public class DisciplinaService {
 		return new DisciplinaDTO(optDisciplina.get());
 		
 	}
+	
+	public Disciplina buscarPorId(Long idDisciplina, int i) {
+		
+		Optional<Disciplina> optDisciplina = this.repository.findById(idDisciplina);
+		
+		if(optDisciplina.isEmpty()) throw new ObjectNotFoundFromParameterException("Erro! Disciplina não encontrada!");
+		
+		return optDisciplina.get();
+		
+	}
 
 	public void excluir(Long idDisciplina) {
 		
@@ -82,5 +92,7 @@ public class DisciplinaService {
 		return paginaDisciplina.map(DisciplinaDTO::new);
 		
 	}
+
+	
 	
 }
