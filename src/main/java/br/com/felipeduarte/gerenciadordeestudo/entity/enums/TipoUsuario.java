@@ -40,7 +40,7 @@ public enum TipoUsuario {
 	public static TipoUsuario toEnum(Integer codigo) {
 		
 		for(TipoUsuario u: TipoUsuario.values()) {
-			if(codigo == u.codigo) {
+			if(codigo == u.getCodigo()) {
 				return u;
 			}
 		}
