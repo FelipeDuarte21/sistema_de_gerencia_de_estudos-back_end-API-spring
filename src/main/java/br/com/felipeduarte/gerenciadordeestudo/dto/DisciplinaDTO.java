@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.felipeduarte.gerenciadordeestudo.entity.Disciplina;
-import br.com.felipeduarte.gerenciadordeestudo.entity.Estudo;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,7 +14,6 @@ public class DisciplinaDTO {
 
 	private Long id;
 	private String nome;
-	private Estudo estudo;
 	private List<TemaDTO> temas = new ArrayList<>();
 	
 	public DisciplinaDTO(Disciplina disciplina) {

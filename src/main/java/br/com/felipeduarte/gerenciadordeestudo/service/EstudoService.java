@@ -56,6 +56,16 @@ public class EstudoService {
 		return new EstudoDTO(optEstudo.get());
 		
 	}
+	
+	public Estudo buscarPorId(Long idEstudo, int a) {
+		
+		Optional<Estudo> optEstudo = this.repository.findById(idEstudo);
+		
+		if(optEstudo.isEmpty()) throw new ObjectNotFoundFromParameterException("Erro! Estudo não encontrado!");
+		
+		return optEstudo.get();
+		
+	}
 
 	public void excluir(Long idEstudo) {
 		
