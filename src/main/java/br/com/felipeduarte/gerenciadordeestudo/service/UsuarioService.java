@@ -59,6 +59,17 @@ public class UsuarioService {
 		return new UsuarioDTO(optUsuario.get());
 		
 	}
+	
+	public Usuario buscarPorId(Long idUsuario, int i) {
+		
+		Optional<Usuario> optUsuario = this.repository.findById(idUsuario);
+		
+		if(optUsuario.isEmpty()) throw new ObjectNotFoundFromParameterException("Erro! Usuário Não Encontrado!");
+		
+		return optUsuario.get();
+	
+	}
+	
 
 	public void excluir(Long idUsuario) {
 		
@@ -77,5 +88,5 @@ public class UsuarioService {
 		return paginaUsuario.map(UsuarioDTO::new);
 		
 	}
-	
+
 }
