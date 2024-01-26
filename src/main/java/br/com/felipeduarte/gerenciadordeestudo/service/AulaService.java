@@ -39,6 +39,8 @@ public class AulaService {
 			
 			Tema tema = this.temaService.buscarPorId(dados.getIdTema(), 0);
 			
+			if(this.temaService.verificarCargaConcluida(tema.getId())) return new AulaDTO(0L);
+			
 			Aula aula = new Aula(dados);
 			aula.setEstudoUsuario(estudoUsuario);
 			aula.setTema(tema);

@@ -20,6 +20,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import br.com.felipeduarte.gerenciadordeestudo.controller.exceptions.ObjectNotFoundException;
 import br.com.felipeduarte.gerenciadordeestudo.dto.TemaDTO;
 import br.com.felipeduarte.gerenciadordeestudo.dto.TemaDadosDTO;
+import br.com.felipeduarte.gerenciadordeestudo.dto.TemaMetricaDTO;
 import br.com.felipeduarte.gerenciadordeestudo.service.TemaService;
 import br.com.felipeduarte.gerenciadordeestudo.service.exceptions.ObjectNotFoundFromParameterException;
 
@@ -110,6 +111,21 @@ public class TemaController {
 			Page<TemaDTO> pagina = this.service.listar(idDisciplina, paginacao);
 			
 			return ResponseEntity.ok(pagina);
+			
+		}catch(ObjectNotFoundFromParameterException ex) {
+			throw new ObjectNotFoundException(ex.getMessage());
+		}
+		
+	}
+	
+	@GetMapping("/metrica/{id}")
+	public ResponseEntity<TemaMetricaDTO> calcularMetrica(@PathVariable(name = "id") Long idTema){
+		
+		try {
+			
+			TemaMetricaDTO metrica = this.service.calcularMetrica(idTema);
+			
+			return ResponseEntity.ok(metrica);
 			
 		}catch(ObjectNotFoundFromParameterException ex) {
 			throw new ObjectNotFoundException(ex.getMessage());

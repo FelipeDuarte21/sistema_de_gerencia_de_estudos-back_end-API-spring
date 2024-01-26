@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.felipeduarte.gerenciadordeestudo.dto.TemaDTO;
 import br.com.felipeduarte.gerenciadordeestudo.dto.TemaDadosDTO;
+import br.com.felipeduarte.gerenciadordeestudo.dto.TemaMetricaDTO;
 import br.com.felipeduarte.gerenciadordeestudo.entity.Disciplina;
 import br.com.felipeduarte.gerenciadordeestudo.entity.Tema;
 import br.com.felipeduarte.gerenciadordeestudo.repository.TemaRepository;
@@ -92,6 +93,29 @@ public class TemaService {
 		
 		return paginaTema.map(TemaDTO::new);
 		
+	}
+
+	public TemaMetricaDTO calcularMetrica(Long idTema) {
+		
+		Optional<Tema> optTema = this.repository.findById(idTema);
+		
+		if(optTema.isEmpty()) throw new ObjectNotFoundFromParameterException("Erro! Tema não foi encontrado!");
+		
+		Long totalRealizado = this.repository.sumTotalCargaRealizada(optTema.get().getId());
+		
+		TemaMetricaDTO metrica = new TemaMetricaDTO();
+		metrica.setCargaTotal(optTema.get().getCargaHoraria());
+		metrica.setTotalRealizado(totalRealizado.intValue());
+		metrica.setTotalRestante(metrica.getCargaTotal() - metrica.getTotalRealizado());
+		metrica.setConcluido(metrica.getTotalRealizado() == metrica.getCargaTotal());
+		
+		return metrica;
+		
+	}
+	
+	public boolean verificarCargaConcluida(Long idTema) {
+		TemaMetricaDTO metrica = calcularMetrica(idTema);
+		return metrica.getConcluido();
 	}
 	
 }

@@ -26,5 +26,9 @@ public class AulaDTO {
 		this.tempoDuracao = aula.getTempoDuracao();
 		this.tema = new TemaDTO(aula.getTema());
 	}
+
+	public AulaDTO(Long id) {
+		this.id = id;
+	}
 	
 }
