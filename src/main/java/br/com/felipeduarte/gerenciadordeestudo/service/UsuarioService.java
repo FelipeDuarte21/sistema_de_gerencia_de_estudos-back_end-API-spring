@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.com.felipeduarte.gerenciadordeestudo.dto.UsuarioDTO;
@@ -18,13 +19,17 @@ public class UsuarioService {
 
 	private UsuarioRepository repository;
 	
-	public UsuarioService(UsuarioRepository repository) {
+	private BCryptPasswordEncoder bCrypt;
+	
+	public UsuarioService(UsuarioRepository repository, BCryptPasswordEncoder bCrypt) {
 		this.repository = repository;
+		this.bCrypt = bCrypt;
 	}
 
 	public UsuarioDTO cadastrar(UsuarioDadosDTO dados) {
 		
 		Usuario usuario = new Usuario(dados);
+		usuario.setSenha(this.bCrypt.encode(usuario.getSenha()));
 		
 		usuario = this.repository.save(usuario);
 		
@@ -68,6 +73,16 @@ public class UsuarioService {
 		
 		return optUsuario.get();
 	
+	}
+	
+	public UsuarioDTO buscarPorEmail(String email) {
+		
+		Optional<Usuario> optUsuario = this.repository.findByEmail(email);
+		
+		if(optUsuario.isEmpty()) throw new ObjectNotFoundFromParameterException("Erro! Usuário Não Encontrado!");
+		
+		return new UsuarioDTO(optUsuario.get());
+		
 	}
 	
 
