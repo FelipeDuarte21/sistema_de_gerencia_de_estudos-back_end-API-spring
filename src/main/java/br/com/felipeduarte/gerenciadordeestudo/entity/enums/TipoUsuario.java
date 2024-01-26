@@ -2,8 +2,8 @@ package br.com.felipeduarte.gerenciadordeestudo.entity.enums;
 
 public enum TipoUsuario {
 	
-	ADMIN(0,"admin"),
-	USER(1,"user");
+	ADMIN(0,"ROLE_ADMIN"),
+	USER(1,"ROLE_USER");
 	
 	private int codigo;
 	private String descricao;

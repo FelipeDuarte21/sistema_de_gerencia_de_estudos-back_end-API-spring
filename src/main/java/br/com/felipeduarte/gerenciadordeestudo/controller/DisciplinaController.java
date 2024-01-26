@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,6 +34,7 @@ public class DisciplinaController {
 		this.service = service;
 	}
 	
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@PostMapping("/estudo/{idEstudo}")
 	public ResponseEntity<DisciplinaDTO> cadastrar(
 			@PathVariable(name = "idEstudo") Long idEstudo, 
@@ -52,6 +54,7 @@ public class DisciplinaController {
 		
 	}
 	
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@PutMapping("/{id}")
 	public ResponseEntity<DisciplinaDTO> alterar(@PathVariable(name = "id") Long idDisciplina, 
 			@RequestBody DisciplinaDadosDTO dados){
@@ -68,6 +71,7 @@ public class DisciplinaController {
 	
 	}
 	
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@GetMapping("/{id}")
 	public ResponseEntity<DisciplinaDTO> buscarPorId(@PathVariable(name = "id") Long idDisciplina) {
 		
@@ -83,6 +87,7 @@ public class DisciplinaController {
 		
 	}
 	
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> excluir(@PathVariable(name = "id") Long idDisciplina){
 		
@@ -97,7 +102,6 @@ public class DisciplinaController {
 		}
 		
 	}
-	
 	
 	@GetMapping("/estudo/{idEstudo}")
 	public ResponseEntity<Page<DisciplinaDTO>> listar(

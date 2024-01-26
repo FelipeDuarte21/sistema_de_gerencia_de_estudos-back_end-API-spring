@@ -35,7 +35,6 @@ public class EstudoUsuarioController {
 		this.service = service;
 	}
 	
-	
 	@PostMapping
 	public ResponseEntity<EstudoUsuarioDTO> cadastrar(@RequestBody EstudoUsuarioDadosDTO dados, UriComponentsBuilder uriBuilder){
 		

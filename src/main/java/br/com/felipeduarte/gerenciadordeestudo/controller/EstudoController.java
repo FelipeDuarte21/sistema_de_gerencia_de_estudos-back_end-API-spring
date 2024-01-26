@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,6 +34,7 @@ public class EstudoController {
 		this.service = service;
 	}
 	
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@PostMapping
 	public ResponseEntity<EstudoDTO> cadastrar(@RequestBody EstudoDadosDTO dados, UriComponentsBuilder uriBuilder) {
 	
@@ -44,6 +46,7 @@ public class EstudoController {
 		
 	}
 	
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@PutMapping("/{id}")
 	public ResponseEntity<EstudoDTO> alterar(@PathVariable(name = "id") Long idEstudo, 
 			@RequestBody EstudoDadosDTO dados){
@@ -75,6 +78,7 @@ public class EstudoController {
 		
 	}
 	
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> excluir(@PathVariable(name = "id") Long idEstudo){
 		
