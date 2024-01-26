@@ -77,6 +77,16 @@ public class EstudoUsuarioService {
 		
 	}
 	
+	public EstudoUsuario buscarPorId(Long idEstudoUsuario, int a) {
+		
+		Optional<EstudoUsuario> optEstudoUsuario = this.repository.findById(idEstudoUsuario);
+		
+		if(optEstudoUsuario.isEmpty()) throw new ObjectNotFoundFromParameterException("Erro! EstudoUsuario não econtrado!");
+		
+		return optEstudoUsuario.get();
+		
+	}
+	
 
 	public void excluir(Long idEstudoUsuario) {
 		

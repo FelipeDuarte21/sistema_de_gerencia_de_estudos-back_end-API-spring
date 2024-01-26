@@ -63,6 +63,16 @@ public class TemaService {
 		return new TemaDTO(optTema.get());
 		
 	}
+	
+	public Tema buscarPorId(Long idTema, int a) {
+		
+		Optional<Tema> optTema = this.repository.findById(idTema);
+		
+		if(optTema.isEmpty()) throw new ObjectNotFoundFromParameterException("Erro! Tema não foi encontrado!");
+		
+		return optTema.get();
+		
+	}
 
 	public void excluir(Long idTema) {
 		
