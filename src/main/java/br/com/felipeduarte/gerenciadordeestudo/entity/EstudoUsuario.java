@@ -50,7 +50,6 @@ public class EstudoUsuario implements Serializable {
 	private List<Aula> aulas = new ArrayList<>();
 	
 	public EstudoUsuario(EstudoUsuarioDadosDTO dados) {
-		this.id = dados.getId();
 		this.dataInscricao = LocalDate.now();
 		this.valorPago = dados.getValorPago();
 	}

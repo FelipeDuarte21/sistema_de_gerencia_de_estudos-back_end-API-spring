@@ -44,7 +44,6 @@ public class Disciplina implements Serializable {
 	private List<Tema> temas = new ArrayList<>();
 	
 	public Disciplina(DisciplinaDadosDTO dados) {
-		this.id = dados.getId();
 		this.nome = dados.getNome();
 	}
 

@@ -23,6 +23,7 @@ import br.com.felipeduarte.gerenciadordeestudo.dto.EstudoDTO;
 import br.com.felipeduarte.gerenciadordeestudo.dto.EstudoDadosDTO;
 import br.com.felipeduarte.gerenciadordeestudo.service.EstudoService;
 import br.com.felipeduarte.gerenciadordeestudo.service.exceptions.ObjectNotFoundFromParameterException;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(value =  "/api/v1/estudo")
@@ -36,7 +37,7 @@ public class EstudoController {
 	
 	@PreAuthorize("hasAnyRole('ADMIN')")
 	@PostMapping
-	public ResponseEntity<EstudoDTO> cadastrar(@RequestBody EstudoDadosDTO dados, UriComponentsBuilder uriBuilder) {
+	public ResponseEntity<EstudoDTO> cadastrar(@RequestBody @Valid EstudoDadosDTO dados, UriComponentsBuilder uriBuilder) {
 	
 		EstudoDTO estudo = this.service.cadastrar(dados);
 		
@@ -49,7 +50,7 @@ public class EstudoController {
 	@PreAuthorize("hasAnyRole('ADMIN')")
 	@PutMapping("/{id}")
 	public ResponseEntity<EstudoDTO> alterar(@PathVariable(name = "id") Long idEstudo, 
-			@RequestBody EstudoDadosDTO dados){
+			@RequestBody @Valid EstudoDadosDTO dados){
 		
 		try {
 			

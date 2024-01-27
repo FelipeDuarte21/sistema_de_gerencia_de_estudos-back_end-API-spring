@@ -3,15 +3,15 @@ package br.com.felipeduarte.gerenciadordeestudo.dto;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 
 public class LoginDTO {
 
-    @NotNull(message = "Informe o campo email")
+    @NotBlank(message = "Informe o campo email")
     @Email(message = "o valor informado está fora do padrão para email")
     private String email;
 
-    @NotNull(message = "Informe o campo senha")
+    @NotBlank(message = "Informe o campo senha")
     private String senha;
 
     public String getEmail() {

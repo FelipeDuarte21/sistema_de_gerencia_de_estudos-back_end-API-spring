@@ -44,7 +44,6 @@ public class Tema implements Serializable {
 	private List<Aula> aulas = new ArrayList<>();
 	
 	public Tema(TemaDadosDTO dados) {
-		this.id = dados.getId();
 		this.titulo = dados.getTitulo();
 		this.cargaHoraria = dados.getCargaHoraria();
 	}

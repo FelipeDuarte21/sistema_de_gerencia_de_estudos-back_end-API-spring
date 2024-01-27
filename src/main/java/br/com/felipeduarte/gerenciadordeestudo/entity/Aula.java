@@ -46,7 +46,6 @@ public class Aula implements Serializable {
 	private Tema tema;
 	
 	public Aula(AulaDadosDTO dados) {
-		this.id = dados.getId();
 		this.data = dados.getData();
 		this.horaInicio = dados.getHoraInicio();
 		this.horaTermino = dados.getHoraTermino();

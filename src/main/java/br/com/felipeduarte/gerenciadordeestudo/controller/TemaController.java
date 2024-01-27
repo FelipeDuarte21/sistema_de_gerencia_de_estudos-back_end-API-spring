@@ -24,6 +24,7 @@ import br.com.felipeduarte.gerenciadordeestudo.dto.TemaDadosDTO;
 import br.com.felipeduarte.gerenciadordeestudo.dto.TemaMetricaDTO;
 import br.com.felipeduarte.gerenciadordeestudo.service.TemaService;
 import br.com.felipeduarte.gerenciadordeestudo.service.exceptions.ObjectNotFoundFromParameterException;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/api/v1/tema")
@@ -39,7 +40,7 @@ public class TemaController {
 	@PostMapping("/disciplina/{idDisciplina}")
 	public ResponseEntity<TemaDTO> cadastrar(
 			@PathVariable(name = "idDisciplina") Long idDisciplina, 
-			@RequestBody TemaDadosDTO dados, UriComponentsBuilder uriBuilder){
+			@RequestBody @Valid TemaDadosDTO dados, UriComponentsBuilder uriBuilder){
 		
 		try {
 			
@@ -58,7 +59,7 @@ public class TemaController {
 	@PreAuthorize("hasAnyRole('ADMIN')")
 	@PutMapping("/{idTema}")
 	public ResponseEntity<TemaDTO> alterar(@PathVariable(name = "idTema") Long idTema,
-			@RequestBody TemaDadosDTO dados ){
+			@RequestBody @Valid TemaDadosDTO dados ){
 		
 		try {
 			

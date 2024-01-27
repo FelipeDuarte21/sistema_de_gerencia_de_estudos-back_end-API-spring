@@ -24,6 +24,7 @@ import br.com.felipeduarte.gerenciadordeestudo.dto.EstudoUsuarioDadosDTO;
 import br.com.felipeduarte.gerenciadordeestudo.service.EstudoUsuarioService;
 import br.com.felipeduarte.gerenciadordeestudo.service.exceptions.IllegalParameterException;
 import br.com.felipeduarte.gerenciadordeestudo.service.exceptions.ObjectNotFoundFromParameterException;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(value =  "/api/v1/estudo-usuario")
@@ -36,7 +37,7 @@ public class EstudoUsuarioController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<EstudoUsuarioDTO> cadastrar(@RequestBody EstudoUsuarioDadosDTO dados, UriComponentsBuilder uriBuilder){
+	public ResponseEntity<EstudoUsuarioDTO> cadastrar(@RequestBody @Valid EstudoUsuarioDadosDTO dados, UriComponentsBuilder uriBuilder){
 		
 		try {
 			
@@ -54,7 +55,7 @@ public class EstudoUsuarioController {
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<EstudoUsuarioDTO> alterar(@PathVariable(name = "id") Long idEstudoUsuario, 
-			@RequestBody EstudoUsuarioDadosDTO dados){
+			@RequestBody @Valid EstudoUsuarioDadosDTO dados){
 		
 		try {
 			

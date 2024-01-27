@@ -48,7 +48,6 @@ public class Usuario implements Serializable{
 	private List<EstudoUsuario> estudosUsuario = new ArrayList<>();
 	
 	public Usuario(UsuarioDadosDTO dados) {
-		this.id = dados.getId();
 		this.nome = dados.getNome();
 		this.email = dados.getEmail();
 		this.senha = dados.getSenha();

@@ -22,6 +22,7 @@ import br.com.felipeduarte.gerenciadordeestudo.dto.UsuarioDTO;
 import br.com.felipeduarte.gerenciadordeestudo.dto.UsuarioDadosDTO;
 import br.com.felipeduarte.gerenciadordeestudo.service.UsuarioService;
 import br.com.felipeduarte.gerenciadordeestudo.service.exceptions.ObjectNotFoundFromParameterException;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/api/v1/usuario")
@@ -34,7 +35,7 @@ public class UsuarioController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<UsuarioDTO> cadastrar(@RequestBody UsuarioDadosDTO dados, UriComponentsBuilder uriBuilder){
+	public ResponseEntity<UsuarioDTO> cadastrar(@RequestBody @Valid  UsuarioDadosDTO dados, UriComponentsBuilder uriBuilder){
 		
 		UsuarioDTO usuario = this.service.cadastrar(dados);
 		
@@ -46,7 +47,7 @@ public class UsuarioController {
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<UsuarioDTO> alterar(@PathVariable(name = "id") Long idUsuario, 
-			@RequestBody UsuarioDadosDTO dados){
+			@RequestBody @Valid UsuarioDadosDTO dados){
 		
 		try {
 			

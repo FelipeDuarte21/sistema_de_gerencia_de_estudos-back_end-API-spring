@@ -47,7 +47,6 @@ public class Estudo implements Serializable {
 	private List<EstudoUsuario> estudosUsuario = new ArrayList<>();
 	
 	public Estudo(EstudoDadosDTO dados) {
-		this.id = dados.getId();
 		this.nome = dados.getNome();
 		this.descricao = dados.getDescricao();
 	}

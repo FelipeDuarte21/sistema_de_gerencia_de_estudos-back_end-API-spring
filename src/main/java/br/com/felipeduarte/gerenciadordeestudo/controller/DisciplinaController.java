@@ -23,6 +23,7 @@ import br.com.felipeduarte.gerenciadordeestudo.dto.DisciplinaDTO;
 import br.com.felipeduarte.gerenciadordeestudo.dto.DisciplinaDadosDTO;
 import br.com.felipeduarte.gerenciadordeestudo.service.DisciplinaService;
 import br.com.felipeduarte.gerenciadordeestudo.service.exceptions.ObjectNotFoundFromParameterException;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(value =  "/api/v1/disciplina")
@@ -38,7 +39,7 @@ public class DisciplinaController {
 	@PostMapping("/estudo/{idEstudo}")
 	public ResponseEntity<DisciplinaDTO> cadastrar(
 			@PathVariable(name = "idEstudo") Long idEstudo, 
-			@RequestBody DisciplinaDadosDTO dados, UriComponentsBuilder uriBuilder){
+			@RequestBody @Valid DisciplinaDadosDTO dados, UriComponentsBuilder uriBuilder){
 		
 		try {
 		
@@ -57,7 +58,7 @@ public class DisciplinaController {
 	@PreAuthorize("hasAnyRole('ADMIN')")
 	@PutMapping("/{id}")
 	public ResponseEntity<DisciplinaDTO> alterar(@PathVariable(name = "id") Long idDisciplina, 
-			@RequestBody DisciplinaDadosDTO dados){
+			@RequestBody @Valid DisciplinaDadosDTO dados){
 		
 		try {
 			

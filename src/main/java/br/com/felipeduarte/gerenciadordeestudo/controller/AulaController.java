@@ -25,6 +25,7 @@ import br.com.felipeduarte.gerenciadordeestudo.dto.AulaDadosDTO;
 import br.com.felipeduarte.gerenciadordeestudo.service.AulaService;
 import br.com.felipeduarte.gerenciadordeestudo.service.exceptions.IllegalParameterException;
 import br.com.felipeduarte.gerenciadordeestudo.service.exceptions.ObjectNotFoundFromParameterException;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/api/v1/aula")
@@ -38,7 +39,7 @@ public class AulaController {
 	
 	@PreAuthorize("hasAnyRole('USER')")
 	@PostMapping
-	public ResponseEntity<AulaDTO> cadastrar(@RequestBody AulaDadosDTO dados, UriComponentsBuilder uriBuilder){
+	public ResponseEntity<AulaDTO> cadastrar(@RequestBody @Valid AulaDadosDTO dados, UriComponentsBuilder uriBuilder){
 		
 		try {
 			
@@ -57,7 +58,7 @@ public class AulaController {
 	@PreAuthorize("hasAnyRole('USER')")
 	@PutMapping("/{id}")
 	public ResponseEntity<AulaDTO> alterar(@PathVariable(name = "id") Long idAula, 
-			@RequestBody AulaDadosDTO dados){
+			@RequestBody @Valid AulaDadosDTO dados){
 		
 		try {
 			
